@@ -56,12 +56,14 @@ DEFAULT_DATA_FORMATS = {
     "robot_only": "smplh",
     "object_interaction": "smplh",
     "climbing": "mocap",
+    "scene": "smplx",
 }
 
 DEFAULT_SAVE_DIRS = {
     "robot_only": "demo_results/{robot}/robot_only/omomo",
     "object_interaction": "demo_results/{robot}/object_interaction/omomo",
     "climbing": "demo_results/{robot}/climbing/mocap_climb",
+    "scene": "demo_results/{robot}/scene/sequence_00",
 }
 
 
@@ -72,7 +74,7 @@ _AUGMENTATION_TRANSLATION = np.array([0.2, 0.0, 0.0])
 
 
 # Type aliases
-TaskType = Literal["robot_only", "object_interaction", "climbing"]
+TaskType = Literal["robot_only", "object_interaction", "climbing", "scene"]
 # DataFormat is imported from config_types.data_type
 
 
@@ -127,6 +129,13 @@ def create_task_constants(
         task_constants.OBJECT_URDF_FILE = str(object_dir / f"{obj_name}.urdf") if object_dir else f"{obj_name}.urdf"
         task_constants.OBJECT_MESH_FILE = str(object_dir / f"{obj_name}.obj") if object_dir else f"{obj_name}.obj"
         task_constants.SCENE_XML_FILE = ""  # Will be set later
+    elif task_type == "scene":
+        obj_name = task_config.object_name or "scene"
+        task_constants.OBJECT_NAME = obj_name
+        object_dir = task_config.object_dir
+        task_constants.OBJECT_URDF_FILE = str(object_dir / f"{obj_name}.urdf") if object_dir else f"{obj_name}.urdf"
+        task_constants.OBJECT_MESH_FILE = str(object_dir / f"{obj_name}.obj") if object_dir else f"{obj_name}.obj"
+        task_constants.SCENE_XML_FILE = str(object_dir / "g1_29dof_w_scene.xml") if object_dir else "g1_29dof_w_scene.xml"
 
     return task_constants
 
@@ -275,6 +284,17 @@ def load_motion_data(
         object_poses = np.tile(np.array([[1, 0, 0, 0, 0, 0, 0]]), (num_frames, 1))
         default_human_height = motion_data_config.default_human_height or 1.78
         smpl_scale = constants.ROBOT_HEIGHT / default_human_height
+    
+    elif task_type == "scene":
+        npz_file = data_path / f"{task_name}.npz"
+        human_data = np.load(str(npz_file))
+        human_joints = human_data["global_joint_positions"]
+        human_height = human_data["height"]
+        smpl_scale = constants.ROBOT_HEIGHT / human_height
+        # Create dummy object poses for robot_only
+        num_frames = human_joints.shape[0]
+        object_poses = np.tile(np.array([[1, 0, 0, 0, 0, 0, 0]]), (num_frames, 1))
+
 
     logger.debug(
         "Loaded %d frames, scale factor: %.4f",
@@ -369,6 +389,17 @@ def setup_object_data(
         constants.SCENE_XML_FILE = new_scene_xml_path
 
         return object_local_pts, object_local_pts_demo, object_urdf_file
+    
+    if task_type == "scene":
+        if object_dir is None:
+            raise ValueError("object_dir must be provided for scene task")
+        
+        object_urdf_file = constants.OBJECT_URDF_FILE
+        object_local_pts, object_local_pts_demo = load_object_data(
+            constants.OBJECT_MESH_FILE, smpl_scale=smpl_scale, sample_count=500
+        )
+        return object_local_pts, object_local_pts_demo, object_urdf_file
+
 
     raise ValueError(f"Unknown task type: {task_type}")
 
@@ -413,7 +444,7 @@ def _compute_q_init_base(
         )
         # MuJoCo order: pos first, then quat
         q_init_base = np.concatenate([human_joints[0, 0, :3], human_quat_init, np.zeros(constants.ROBOT_DOF)])
-    elif task_type == "climbing":
+    elif task_type == "climbing" or task_type == "scene":
         if retargeter is None:
             raise ValueError("retargeter is required for climbing task")
         _, human_quat_init = transform_from_human_to_world(
@@ -567,6 +598,12 @@ def initialize_robot_pose(
         object_poses = convert_object_poses_to_mujoco_order(object_poses)
         return q_init, None, object_poses, human_joints, object_poses
 
+    if task_type == "scene":
+        q_init = _compute_q_init_base(task_type, data_format, human_joints, object_poses, constants, retargeter)
+        object_poses = convert_object_poses_to_mujoco_order(object_poses)
+        return q_init, None, object_poses, human_joints, object_poses
+
+
     raise ValueError(f"Unknown task type: {task_type}")
 
 
@@ -587,7 +624,7 @@ def determine_output_path(
     """
     if task_type == "robot_only":
         return str(save_dir / f"{task_name}.npz")
-    if task_type in ("object_interaction", "climbing"):
+    if task_type in ("object_interaction", "climbing", "scene"):
         suffix = "_augmented" if augmentation else "_original"
         return str(save_dir / f"{task_name}{suffix}.npz")
     raise ValueError(f"Unknown task type: {task_type}")

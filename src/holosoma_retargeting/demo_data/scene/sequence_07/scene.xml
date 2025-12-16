@@ -1,0 +1,18 @@
+<mujoco model="scene">
+    <compiler meshdir="./" angle="radian"/>
+
+    <asset>
+        <mesh name="scene_mesh" file="scene.obj" scale="0.74 0.74 0.74"/>
+        
+        <material name="scene_mat" rgba="0.3 0.7 0.9 0.5" specular="0.2" shininess="0.1"/>
+    </asset>
+
+    <worldbody>
+        <body name="scene_body" pos="0 0 0" quat="1 0 0 0">
+            <geom type="mesh" 
+                  mesh="scene_mesh" 
+                  material="scene_mat"
+                  condim="3" /> 
+        </body>
+    </worldbody>
+</mujoco>
