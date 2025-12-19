@@ -39,6 +39,12 @@
     <mesh name="right_wrist_yaw_link" content_type="model/obj" file="right_wrist_yaw_link.obj"/>
     <mesh name="right_rubber_hand_link" content_type="model/obj" file="right_rubber_hand.obj"/>
 
+    <!-- <include file="scene_assets.xml"/> -->
+    <!-- <mesh name="scene1" file="../../../demo_data/scene/sequence_07/scene.obj"
+        scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="scene1_material" rgba="0.3 0.7 0.9 0.5"/> -->
+    <include file="scene_assets_dollhouse.xml"/>
+
   </asset>
 
   <worldbody>
@@ -353,8 +359,55 @@
         </body>
       </body>
     </body>
+    <include file="scene_body_dollhouse.xml"/>
+
+    <!-- <include file="scene_body.xml"/> -->
 
   </worldbody>
+
+
+  <actuator>
+    <motor name="left_hip_pitch_joint" joint="left_hip_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hip_roll_joint" joint="left_hip_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hip_yaw_joint" joint="left_hip_yaw_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_knee_joint" joint="left_knee_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_ankle_pitch_joint" joint="left_ankle_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_ankle_roll_joint" joint="left_ankle_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hip_pitch_joint" joint="right_hip_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hip_roll_joint" joint="right_hip_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hip_yaw_joint" joint="right_hip_yaw_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_knee_joint" joint="right_knee_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_ankle_pitch_joint" joint="right_ankle_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_ankle_roll_joint" joint="right_ankle_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="waist_yaw_joint" joint="waist_yaw_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="waist_roll_joint" joint="waist_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="waist_pitch_joint" joint="waist_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_shoulder_pitch_joint" joint="left_shoulder_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_shoulder_roll_joint" joint="left_shoulder_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_shoulder_yaw_joint" joint="left_shoulder_yaw_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_elbow_joint" joint="left_elbow_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_shoulder_pitch_joint" joint="right_shoulder_pitch_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_shoulder_roll_joint" joint="right_shoulder_roll_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_shoulder_yaw_joint" joint="right_shoulder_yaw_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_elbow_joint" joint="right_elbow_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+
+    <!-- <motor name="left_hand_thumb_0_joint" joint="left_hand_thumb_0_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hand_thumb_1_joint" joint="left_hand_thumb_1_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hand_thumb_2_joint" joint="left_hand_thumb_2_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hand_middle_0_joint" joint="left_hand_middle_0_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hand_middle_1_joint" joint="left_hand_middle_1_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hand_index_0_joint" joint="left_hand_index_0_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="left_hand_index_1_joint" joint="left_hand_index_1_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_thumb_0_joint" joint="right_hand_thumb_0_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_thumb_1_joint" joint="right_hand_thumb_1_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_thumb_2_joint" joint="right_hand_thumb_2_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_index_0_joint" joint="right_hand_index_0_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_index_1_joint" joint="right_hand_index_1_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_middle_0_joint" joint="right_hand_middle_0_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>
+    <motor name="right_hand_middle_1_joint" joint="right_hand_middle_1_joint" gear="1" ctrllimited="true" ctrlrange="-200 200"/>  -->
+
+
+  </actuator>
 
   <!-- setup scene -->
   <statistic center="1.0 0.7 1.0" extent="0.8"/>
@@ -363,19 +416,19 @@
     <rgba haze="0.15 0.25 0.35 1"/>
     <global azimuth="-140" elevation="-20"/>
   </visual>
-  <asset>
-    <!-- <texture name="texplane" builtin="checker" height="512" width="512" rgb1=".2 .3 .4" rgb2=".1 .15 .2" type="2d" />
-    <material name="MatPlane" reflectance="0.5" shininess="0.01" specular="0.1" texrepeat="1 1" texture="texplane" texuniform="true" /> -->
+  <!-- <asset>
+    <texture name="texplane" builtin="checker" height="512" width="512" rgb1=".2 .3 .4" rgb2=".1 .15 .2" type="2d" />
+    <material name="MatPlane" reflectance="0.5" shininess="0.01" specular="0.1" texrepeat="1 1" texture="texplane" texuniform="true" />
     <mesh file="../meshes/scene.obj" name="terrain"/>
     <texture name="grid" type="2d" builtin="checker" rgb1="0.8 0.7 0.55" rgb2="0.7 0.6 0.45" width="512" height="512" mark="edge" markrgb=".8 .8 .8"/>
     <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
   </asset>
   <worldbody>
-    <!-- <geom name="floor" size="0 0 0.01" type="plane" material="groundplane" contype="1" conaffinity="0" priority="1"
+    <geom name="floor" size="0 0 0.01" type="plane" material="groundplane" contype="1" conaffinity="0" priority="1"
       friction="0.6" condim="3"/>
 
-        <light diffuse=".5 .5 .5" pos="-3 -3 5" dir="3 3 -5" castshadow="true"/> -->
+        <light diffuse=".5 .5 .5" pos="-3 -3 5" dir="3 3 -5" castshadow="true"/>
     <geom name="floor" type="mesh" mesh="terrain" pos="0 0 0" condim="3" material="grid"/>
-  </worldbody>
+  </worldbody> -->
 
 </mujoco>

@@ -133,9 +133,10 @@ def create_task_constants(
         obj_name = task_config.object_name or "scene"
         task_constants.OBJECT_NAME = obj_name
         object_dir = task_config.object_dir
+        task_constants.OBJECT_DIR = str(object_dir) if object_dir else ""
         task_constants.OBJECT_URDF_FILE = str(object_dir / f"{obj_name}.urdf") if object_dir else f"{obj_name}.urdf"
         task_constants.OBJECT_MESH_FILE = str(object_dir / f"{obj_name}.obj") if object_dir else f"{obj_name}.obj"
-        task_constants.SCENE_XML_FILE = str(object_dir / "g1_29dof_w_scene.xml") if object_dir else "g1_29dof_w_scene.xml"
+        task_constants.SCENE_XML_FILE = ""  # Will be set later
 
     return task_constants
 
@@ -159,7 +160,7 @@ def validate_config(cfg: RetargetingConfig) -> None:
         )
 
     # Task-specific format requirements
-    if cfg.task_type == "climbing" and cfg.data_format not in (None, "mocap"):
+    if cfg.task_type == "climbing" and cfg.data_format not in (None, "mocap", "smplx"):
         raise ValueError("Climbing task requires 'mocap' data format")
     if cfg.task_type == "object_interaction" and cfg.data_format not in (None, "smplh"):
         raise ValueError("Object interaction requires 'smplh' data format")
@@ -286,7 +287,7 @@ def load_motion_data(
         smpl_scale = constants.ROBOT_HEIGHT / default_human_height
     
     elif task_type == "scene":
-        npz_file = data_path / f"{task_name}.npz"
+        npz_file = data_path / "sequence_07" / f"{task_name}.npz"
         human_data = np.load(str(npz_file))
         human_joints = human_data["global_joint_positions"]
         human_height = human_data["height"]
@@ -392,12 +393,47 @@ def setup_object_data(
     
     if task_type == "scene":
         if object_dir is None:
-            raise ValueError("object_dir must be provided for scene task")
-        
-        object_urdf_file = constants.OBJECT_URDF_FILE
-        object_local_pts, object_local_pts_demo = load_object_data(
-            constants.OBJECT_MESH_FILE, smpl_scale=smpl_scale, sample_count=500
+            raise ValueError("object_dir must be provided for climbing task")
+
+        # Setup climbing-specific object
+        box_asset_xml = object_dir / "scene_assets_dollhouse.xml"
+        scene_xml_name = Path(constants.ROBOT_URDF_FILE).name.replace(".urdf", f"_w_{constants.OBJECT_NAME}.xml")
+        scene_xml_file = object_dir / scene_xml_name
+        # Set SCENE_XML_FILE in constants BEFORE creating retargeter (needed for temp_retargeter)
+        constants.SCENE_XML_FILE = str(scene_xml_file)
+
+        np.random.seed(0)
+        print("object mesh file: ", constants.OBJECT_MESH_FILE)
+        object_local_pts, object_local_pts_demo_original = load_object_data(
+            constants.OBJECT_MESH_FILE,
+            smpl_scale=smpl_scale,
+            surface_weights=lambda p: (
+                task_config.surface_weight_high
+                if p[2] > task_config.surface_weight_threshold
+                else task_config.surface_weight_low
+            ),
+            sample_count=100,
         )
+
+        if augmentation:
+            ground_pts = create_ground_points(
+                task_config.climbing_ground_range, task_config.climbing_ground_range, task_config.climbing_ground_size
+            )
+            object_local_pts_demo = np.concatenate([object_local_pts_demo_original, ground_pts], axis=0)
+            object_scale = object_scale_augmented
+            object_local_pts = object_scale * object_local_pts_demo
+        else:
+            object_scale = object_scale_normal
+            object_local_pts_demo = object_local_pts_demo_original
+            object_local_pts = object_local_pts_demo
+
+        # Create scaled URDF and XML files
+        scale_factors = tuple(float(value) for value in (object_scale * smpl_scale))
+        object_urdf_file = create_scaled_multi_boxes_urdf(constants.OBJECT_URDF_FILE, scale_factors)
+        object_asset_xml_path = create_scaled_multi_boxes_xml(str(box_asset_xml), scale_factors)
+        new_scene_xml_path = create_new_scene_xml_file(str(scene_xml_file), scale_factors, object_asset_xml_path)
+        constants.SCENE_XML_FILE = new_scene_xml_path
+
         return object_local_pts, object_local_pts_demo, object_urdf_file
 
 
@@ -506,7 +542,7 @@ def build_retargeter_kwargs_from_config(
         "debug": retargeter_config.debug,
         "w_nominal_tracking_init": retargeter_config.w_nominal_tracking_init,
     }
-    if task_type == "climbing":
+    if task_type == "climbing" or task_type == "scene":
         kwargs["nominal_tracking_tau"] = retargeter_config.nominal_tracking_tau
     return kwargs
 
@@ -666,6 +702,11 @@ def main(cfg: RetargetingConfig) -> None:
         from dataclasses import replace
 
         cfg.task_config = replace(cfg.task_config, object_dir=data_path / task_name)
+    
+    if task_type == "scene" and cfg.task_config.object_dir is None:
+        from dataclasses import replace
+
+        cfg.task_config = replace(cfg.task_config, object_dir=data_path / task_name)
 
     constants = create_task_constants(
         robot_config=cfg.robot_config,
@@ -701,7 +742,7 @@ def main(cfg: RetargetingConfig) -> None:
     # Preprocess motion data
     if task_type == "robot_only":
         human_joints = preprocess_motion_data(human_joints, retargeter, toe_names, smpl_scale)
-    elif task_type in {"object_interaction", "climbing"}:
+    elif task_type in {"object_interaction", "climbing", "scene"}:
         human_joints, object_poses, object_moving_frame_idx = preprocess_motion_data(
             human_joints,
             retargeter,

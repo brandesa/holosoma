@@ -1,0 +1,5 @@
+<mujocoinclude>
+    <mesh name="planes_1-dynamic - BLK2GO-3630355-Scan 080 28" file="../../../demo_data/scene/sequence_07/box_models/box1.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="planes_1-dynamic - BLK2GO-3630355-Scan 080 28_material" rgba="0.3 0.7 0.9 0.5"/>
+ 
+</mujocoinclude>

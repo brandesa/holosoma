@@ -1,0 +1,5 @@
+<mujocoinclude>
+    <body name="multi_boxes_planes_link" pos="0 0 0" quat="1 0 0 0">
+        <geom name="multi_boxes_planes_link" type="mesh" mesh="planes" pos="0 0 0" quat="1 0 0 0" material="planes_material" contype="1" conaffinity="1"/>
+    </body>
+</mujocoinclude>

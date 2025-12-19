@@ -1,0 +1,5 @@
+<mujocoinclude>
+    <body name="scene_link1" pos="0 0 0" quat="1 0 0 0">
+        <geom name="scene_link_1" type="mesh" mesh="scene1" pos="0 0 0" quat="1 0 0 0" material="scene1_material" contype="1" conaffinity="1"/>
+    </body>
+</mujocoinclude>
