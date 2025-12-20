@@ -1,5 +1,20 @@
 <mujocoinclude>
-    <body name="multi_boxes_planes_link" pos="0 0 0" quat="1 0 0 0">
+    <!-- <body name="multi_boxes_planes_link" pos="0 0 0" quat="1 0 0 0">
         <geom name="multi_boxes_planes_link" type="mesh" mesh="planes" pos="0 0 0" quat="1 0 0 0" material="planes_material" contype="1" conaffinity="1"/>
+    </body> -->
+    <body name="multi_boxes_planes18_link" pos="0 0 0" quat="1 0 0 0">
+        <geom name="multi_boxes_planes18_link" type="mesh" mesh="planes_18" pos="0 0 0" quat="1 0 0 0" material="planes18_material" contype="1" conaffinity="1"/>
+    </body>
+    <body name="multi_boxes_planes21_link" pos="0 0 0" quat="1 0 0 0">
+        <geom name="multi_boxes_planes21_link" type="mesh" mesh="planes_21" pos="0 0 0" quat="1 0 0 0" material="planes21_material" contype="1" conaffinity="1"/>
+    </body>
+    <body name="multi_boxes_planes28_link" pos="0 0 0" quat="1 0 0 0">
+        <geom name="multi_boxes_planes28_link" type="mesh" mesh="planes_28" pos="0 0 0" quat="1 0 0 0" material="planes28_material" contype="1" conaffinity="1"/>
+    </body>
+    <body name="multi_boxes_planes30_link" pos="0 0 0" quat="1 0 0 0">
+        <geom name="multi_boxes_planes30_link" type="mesh" mesh="planes_30" pos="0 0 0" quat="1 0 0 0" material="planes30_material" contype="1" conaffinity="1"/>
+    </body>
+    <body name="multi_boxes_planes45_link" pos="0 0 0" quat="1 0 0 0">
+        <geom name="multi_boxes_planes45_link" type="mesh" mesh="planes_45" pos="0 0 0" quat="1 0 0 0" material="planes45_material" contype="1" conaffinity="1"/>
     </body>
 </mujocoinclude>

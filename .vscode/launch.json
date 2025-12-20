@@ -1,0 +1,97 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "name": "Robot Retarget Scene (Seq 07)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/examples/robot_retarget.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+                "--data_path", "demo_data/scene/",
+                "--task-type", "scene",
+                "--task-name", "sequence_07",
+                "--data_format", "smplx",
+                "--robot-config.robot-urdf-file", "models/g1/g1_29dof_spherehand.urdf",
+                "--save_dir", "demo_results/g1/robot_scene/sequence_07",
+                "--retargeter.debug",
+                "--retargeter.visualize",
+            ]
+        },
+        {
+            "name": "Robot Retarget Climb",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/examples/robot_retarget.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+                "--data_path", "demo_data/climb",
+                "--task-type", "climbing",
+                "--task-name", "mocap_climb_seq_0",
+                "--data_format", "smplx",
+                "--robot-config.robot-urdf-file", "models/g1/g1_29dof_spherehand.urdf",
+                "--save_dir", "demo_results/g1/robot_climbing/mocap_climb",
+                "--retargeter.debug",
+                "--retargeter.visualize",
+            ]
+        },
+        {
+            "name": "Robot Retarget Climb Seq 5",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/examples/robot_retarget.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+                "--data_path", "demo_data/climb",
+                "--task-type", "climbing",
+                "--task-name", "mocap_climb_seq_5",
+                "--data_format", "smplx",
+                "--robot-config.robot-urdf-file", "models/g1/g1_29dof_spherehand.urdf",
+                "--save_dir", "demo_results/g1/robot_climbing/mocap_climb",
+                "--retargeter.debug",
+                "--retargeter.visualize",
+            ]
+        },
+        {
+            "name": "Robot Retarget SMPLX",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/examples/robot_retarget.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+                "--data_path", "demo_data/smplx",
+                "--task-type", "robot_only",
+                "--task-name", "retarget_07",
+                "--data_format", "smplx",
+                "--task-config.ground-range", "-10", "10",
+                "--save_dir", "demo_results/g1/robot_only/smplx",
+                "--retargeter.debug",
+                "--retargeter.visualize",
+            ]
+        },
+        {
+            "name": "Decompose Scene",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/examples/decompose_scene.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+            ]
+        }
+
+    ]
+}

@@ -46,7 +46,9 @@
 
     <mesh name="half_sphere" file="../../../models/g1/assets/half_sphere.obj"/>
 
-
+    <!-- <mesh name="planes_18" file="/planes_18.obj"
+        scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="planes18_material" rgba="0.5 0.5 0.5 0.5"/> -->
     <include file="box_assets.xml"/>
   </asset>
 

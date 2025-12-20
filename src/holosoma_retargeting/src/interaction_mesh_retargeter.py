@@ -112,6 +112,8 @@ class InteractionMeshRetargeter:
             robot_xml_path = self.robot_model_path.replace(".urdf", ".xml")
         elif self.object_name == "multi_boxes":
             robot_xml_path = self.task_constants.SCENE_XML_FILE
+        elif self.object_name == "seq":
+            robot_xml_path = self.task_constants.SCENE_XML_FILE
         elif self.object_name == "scene":
             robot_xml_path = self.task_constants.SCENE_XML_FILE
         else:

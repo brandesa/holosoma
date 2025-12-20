@@ -240,7 +240,7 @@ def load_motion_data(
 
             human_joints = np.load(str(npy_file))[::downsample]
 
-            default_human_height = motion_data_config.default_human_height or 1.78
+            default_human_height = 1.70
             smpl_scale = constants.ROBOT_HEIGHT / default_human_height
         elif data_format == "smplx":
             npz_file = data_path / f"{task_name}.npz"
