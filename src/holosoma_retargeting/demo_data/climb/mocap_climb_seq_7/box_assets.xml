@@ -32,5 +32,24 @@
     <material name="planes30_material" rgba="0.5 0.5 0.5 0.5"/>
     <material name="planes45_material" rgba="0.5 0.5 0.5 0.5"/>
 
+    <!-- <mesh name="part_000" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_000.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_000_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_001" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_001.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_001_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_002" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_002.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_002_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_003" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_003.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_003_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_004" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_004.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_004_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_005" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_005.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_005_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_006" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_006.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_006_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_007" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_007.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_007_material" rgba="0.3 0.7 0.9 0.5"/>
+    <mesh name="part_008" file="../../../demo_data/climb/mocap_climb_seq_7/box_models/part_008.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <material name="part_008_material" rgba="0.3 0.7 0.9 0.5"/> -->
+
 
 </mujocoinclude>

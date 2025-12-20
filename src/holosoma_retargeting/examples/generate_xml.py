@@ -1,10 +1,10 @@
 import os
 
 # 1. Settings
-mesh_folder = "demo_data/scene/sequence_07/scene_decomposed"
-relative_mesh_folder = "../../../demo_data/climb/mocap_climb_seq_0/box_models"
-output_assets_xml = "demo_data/scene/sequence_07/scene_decomposed/box_assets.xml"
-output_body_xml = "demo_data/scene/sequence_07/scene_decomposed/box_body.xml"
+mesh_folder = "demo_data/climb/mocap_climb_seq_8/box_models"
+relative_mesh_folder = "../../../demo_data/climb/mocap_climb_seq_8/box_models"
+output_assets_xml = "demo_data/climb/mocap_climb_seq_8/box_assets.xml"
+output_body_xml = "demo_data/climb/mocap_climb_seq_8/box_body.xml"
 
 # Parameters
 scale_str = "0.7415730337078652 0.7415730337078652 0.7415730337078652"

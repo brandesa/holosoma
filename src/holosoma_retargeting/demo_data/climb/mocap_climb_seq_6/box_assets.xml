@@ -1,5 +1,5 @@
 <mujocoinclude>
-    <mesh name="part_000" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_000.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <!-- <mesh name="part_000" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_000.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_000_material" rgba="0.3 0.7 0.9 0.5"/>
     <mesh name="part_001" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_001.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_001_material" rgba="0.3 0.7 0.9 0.5"/>
@@ -14,10 +14,10 @@
     <mesh name="part_006" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_006.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_006_material" rgba="0.3 0.7 0.9 0.5"/>
     <mesh name="part_007" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_007.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
-    <material name="part_007_material" rgba="0.3 0.7 0.9 0.5"/>
+    <material name="part_007_material" rgba="0.3 0.7 0.9 0.5"/> -->
     <mesh name="part_008" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_008.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_008_material" rgba="0.3 0.7 0.9 0.5"/>
-    <mesh name="part_009" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_009.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
+    <!-- <mesh name="part_009" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_009.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_009_material" rgba="0.3 0.7 0.9 0.5"/>
     <mesh name="part_010" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_010.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_010_material" rgba="0.3 0.7 0.9 0.5"/>
@@ -164,5 +164,5 @@
     <mesh name="part_081" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_081.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
     <material name="part_081_material" rgba="0.3 0.7 0.9 0.5"/>
     <mesh name="part_082" file="../../../demo_data/climb/mocap_climb_seq_6/box_models/part_082.obj" scale="0.7415730337078652 0.7415730337078652 0.7415730337078652"/>
-    <material name="part_082_material" rgba="0.3 0.7 0.9 0.5"/>
+    <material name="part_082_material" rgba="0.3 0.7 0.9 0.5"/> -->
 </mujocoinclude>
