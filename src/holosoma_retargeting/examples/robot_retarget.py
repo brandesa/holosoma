@@ -280,7 +280,7 @@ def load_motion_data(
         npy_file = npy_files[0]
         # MOCAP-specific downsample factor
         downsample = 4
-        human_joints = np.load(str(npy_file))[::downsample]
+        human_joints = np.load(str(npy_file))#[::downsample]
         num_frames = human_joints.shape[0]
         object_poses = np.tile(np.array([[1, 0, 0, 0, 0, 0, 0]]), (num_frames, 1))
         default_human_height = motion_data_config.default_human_height or 1.78

@@ -620,8 +620,8 @@ def create_scaled_multi_boxes_urdf(
         sx, sy, sz = new_scale
         output_path = urdf_path.replace(".urdf", f"_scaled_{sx:.2f}_{sy:.2f}_{sz:.2f}.urdf")
 
-    if Path(output_path).exists():
-        return output_path
+    # if Path(output_path).exists():
+    #     return output_path
 
     with open(urdf_path) as f:
         content = f.read()
