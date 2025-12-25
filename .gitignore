@@ -23,3 +23,6 @@ src/holosoma/holosoma/data/robots/converted_rank*/
 # other
 *.egg-info
 __pycache__
+
+
+src/holosoma_retargeting/demo_data/climb/mocap_climb_seq_*/box_models

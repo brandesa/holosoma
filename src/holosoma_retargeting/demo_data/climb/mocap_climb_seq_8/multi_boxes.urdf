@@ -1,3 +1,7 @@
+
+
+
+
 <?xml version="1.0"?>
 <robot name="multi_boxes">
   <!-- Note: Platform/ground boxes with large coordinates (-10 or 10) have been filtered out -->

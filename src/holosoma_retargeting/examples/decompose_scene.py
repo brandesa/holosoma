@@ -17,7 +17,7 @@ mesh = trimesh.load(input_file, force="mesh")
 mesh = coacd.Mesh(mesh.vertices, mesh.faces)
 parts = coacd.run_coacd(
     mesh, 
-    threshold=0.02,             # Lower this for more detail (default is 0.05)
+    threshold=0.01,             # Lower this for more detail (default is 0.05)
     preprocess_resolution=100,   # Increase for better initial geometry (default 50)
     resolution=2000,            # Sampling resolution for concavity (default 2000)
     # mcts_iteration=100,        # Number of search iterations (default 100)
@@ -29,6 +29,7 @@ print(f"Decomposed into {len(parts)} parts.")
 
 vs_all = []
 fs_all = []
+vs_counter = 0
 
 for i, part_mesh in enumerate(parts):
     vs, fs = part_mesh
@@ -37,7 +38,8 @@ for i, part_mesh in enumerate(parts):
     part_trimesh.export(output_path)
     
     vs_all.append(vs)
-    fs_all.append(fs + sum(len(v) for v in vs_all[:-1]))
+    fs_all.append(fs + vs_counter)
+    vs_counter += len(vs)
 
 # Save combined mesh as well
 combined_mesh = trimesh.Trimesh(vertices=np.vstack(vs_all), faces=np.vstack(fs_all))

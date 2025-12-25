@@ -25,7 +25,7 @@
             ]
         },
         {
-            "name": "Robot Retarget Climb",
+            "name": "Robot Retarget Climb Seq 8",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/holosoma_retargeting/examples/robot_retarget.py",
@@ -35,7 +35,7 @@
             "args": [
                 "--data_path", "demo_data/climb",
                 "--task-type", "climbing",
-                "--task-name", "mocap_climb_seq_0",
+                "--task-name", "mocap_climb_seq_8",
                 "--data_format", "smplx",
                 "--robot-config.robot-urdf-file", "models/g1/g1_29dof_spherehand.urdf",
                 "--save_dir", "demo_results/g1/robot_climbing/mocap_climb",
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "name": "Robot Retarget Climb Seq 5",
+            "name": "Robot Retarget Climb Seq 7",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/holosoma_retargeting/examples/robot_retarget.py",
@@ -54,7 +54,7 @@
             "args": [
                 "--data_path", "demo_data/climb",
                 "--task-type", "climbing",
-                "--task-name", "mocap_climb_seq_5",
+                "--task-name", "mocap_climb_seq_7",
                 "--data_format", "smplx",
                 "--robot-config.robot-urdf-file", "models/g1/g1_29dof_spherehand.urdf",
                 "--save_dir", "demo_results/g1/robot_climbing/mocap_climb",
@@ -82,6 +82,20 @@
             ]
         },
         {
+            "name": "Visu Seq 06",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/viser_player.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+                "--robot-urdf", "models/g1/g1_29dof_spherehand.urdf",
+                "--object_urdf", "demo_data/climb/mocap_climb_seq_6/multi_boxes_scaled_0.74_0.74_0.74.urdf",
+                "--qpos_npz", "demo_results/g1/robot_climbing/mocap_climb/mocap_climb_seq_6_original.npz",
+            ]
+        },
+        {
             "name": "Decompose Scene",
             "type": "debugpy",
             "request": "launch",
@@ -91,7 +105,19 @@
             "cwd": "${workspaceFolder}/src/holosoma_retargeting",
             "args": [
             ]
-        }
+        },
+        {
+            "name": "Generate XML",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/holosoma_retargeting/examples/generate_xml.py",
+            "console": "integratedTerminal",
+            "python": "/home/brandesa/.holosoma_deps/miniconda3/envs/hsretargeting/bin/python",
+            "cwd": "${workspaceFolder}/src/holosoma_retargeting",
+            "args": [
+            ]
+        },
+
 
     ]
 }

@@ -29,8 +29,8 @@ for filename in files:
 
     # --- B. Generate Body Lines ---
     # Using the structure: body -> geom
-    body_lines.append(f'    <body name="{asset_name}_link" pos="0 0 0" quat="1 0 0 0">')
-    body_lines.append(f'        <geom name="{asset_name}_link" type="mesh" mesh="{asset_name}" '
+    body_lines.append(f'    <body name="multi_boxes_{asset_name}_link" pos="0 0 0" quat="1 0 0 0">')
+    body_lines.append(f'        <geom name="multi_boxes_{asset_name}_link" type="mesh" mesh="{asset_name}" '
                       f'pos="0 0 0" quat="1 0 0 0" material="{asset_name}_material" '
                       f'contype="1" conaffinity="1"/>')
     body_lines.append('    </body>')
